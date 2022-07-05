@@ -12,7 +12,7 @@ if(!empty($_POST))
     {
       session_start();
       $_SESSION['login'] = LOGIN;
-      header('Location: challenge10.php');
+      header('Location: index.php');
       exit();
     }
   }
