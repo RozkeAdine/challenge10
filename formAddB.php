@@ -1,4 +1,7 @@
-<?php
+<html>
+<button  type="submit" name="submit"><a href="index.php">retour à la liste d'ouvrage</a></button>    <button  type="submit" name="submit"><a href="formDeleteB.php">Supprimer un ouvrage</a></button>
+<br><br>
+</html><?php
 // ouverture de la connexion
 session_start();
 
@@ -79,9 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "<option value='" . $ligne['idauthor'] . "'>" . $ligne['author'] . "</option>";
                 ?>
     </select>
-    <label  for="firstname"><a href="form_author.php">Auteur inconnu ?</a></label><br>
+    <br><label  for="firstname"><a href="formAddA.php">Auteur inconnu ?</a></label><br>
   </div>
-    <label for='submit'>Enregistrer</label>
+    <label for='submit'></label><br><br>
     <input type='submit' value='cliquez pour enregistrer' />
   </div>
 </form>

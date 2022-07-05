@@ -1,8 +1,13 @@
 <?php
-session_start();
+  // ouverture de la connexion
+  session_start();
 
-require_once 'connec.php';
-$pdo = new \PDO(DSN, USER, PASS);
+  require_once 'connec.php';
+  $pdo = new \PDO(DSN, USER, PASS);  
+  // suppression des données
+?>
+
+<?php
 $query = ("SELECT * FROM projet_bibliotheque.books ORDER BY 'title' ASC");
 $books = $pdo->query($query)->fetchAll(PDO::FETCH_OBJ);
 ?>
@@ -22,19 +27,31 @@ $books = $pdo->query($query)->fetchAll(PDO::FETCH_OBJ);
     <div  class="button">
     <button  type="submit" name="submit"><a href="formAddB.php">Ajouter un ouvrage</a></button>
     <button  type="submit" name="submit"><a href="formAddA.php">Ajouter un autheur</a></button>
-    <button  type="submit" name="submit"><a href="formDeleteB.php">Supprimer un ouvrage</a></button>
-    <button  type="submit" name="submit"><a href="formAlterB.php">Modifier un ouvrage</a></button>    
+    <button  type="submit" name="submit"><a href="index.php">retour à la liste d'ouvrage</a></button><br><br>
     </div>
     <body>
+        <form action="" method="POST">
         <ul>
         <?php foreach($books as $book)
         { ?>
             <li>
                 <h3>
                 <?= "{$book->saga} - {$book->title}"; ?>
+                <input type='checkbox' name='supp[]' value='<?= $book->idbook; ?>' />
                 </h3>
             </li>
         <?php } ?>
         </ul>
+        <div><input type='submit' value='supprimer' /></div>
+        <?php  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // création de la requête
+    $sql = "DELETE FROM projet_bibliotheque.books WHERE idbook=:idbook";
+    $statement = $pdo->prepare($sql);
+    // envoi des requêtes
+    foreach ($_POST['supp'] as $idbook) {
+      $statement->execute(['idbook' => $idbook]);
+    }
+  }?>
+    </form>
     </body>
 </html>
