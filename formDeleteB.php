@@ -1,6 +1,10 @@
 <?php
-  // ouverture de la connexion
-  session_start();
+session_start();
+if(empty($_SESSION['login']))
+{
+  header('location:login.php');
+  exit();
+}
 
   require_once 'connec.php';
   $pdo = new \PDO(DSN, USER, PASS);  

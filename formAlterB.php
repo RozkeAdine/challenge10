@@ -1,13 +1,22 @@
-<html>
-<div  class="button">
-    <button  type="submit" name="submit"><a href="formAddB.php">Ajouter un ouvrage</a></button>
-    <button  type="submit" name="submit"><a href="formAddA.php">Ajouter un autheur</a></button>
-    <button  type="submit" name="submit"><a href="formDeleteB.php">Supprimer un ouvrage</a></button>
-    <button  type="submit" name="submit"><a href="formAlterB.php">Modifier un ouvrage</a></button>    
-    </div>
-
-</html><?php
+<?php
 session_start();
+if(empty($_SESSION['login']))
+{
+  header('location:login.php');
+  exit();
+}
+?>
+<html>
+  <div  class="button">
+      <button  type="submit" name="submit"><a href="index.php">liste des ouvrages</a></button>
+      <button  type="submit" name="submit"><a href="formAddB.php">Ajouter un ouvrage</a></button>
+      <button  type="submit" name="submit"><a href="formAddA.php">Ajouter un autheur</a></button>
+      <button  type="submit" name="submit"><a href="formDeleteB.php">Supprimer un ouvrage</a></button>
+      <button  type="submit" name="submit"><a href="formAlterB.php">Modifier un ouvrage</a></button>    
+  </div>
+
+</html>
+<?php
 
 require_once 'connec.php';
 $pdo = new \PDO(DSN, USER, PASS);

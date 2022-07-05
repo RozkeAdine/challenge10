@@ -1,7 +1,18 @@
 <?php
-// ouverture de la connexion
 session_start();
-?>
+if(empty($_SESSION['login']))
+{
+  header('location:login.php');
+  exit();
+}?>
+<html>
+<?php if (isset($_SESSION['login'])): ?>
+  hello, <?=$_SESSION['login'] ?>!
+  <a href="logout.php">Log out</a>
+  <?php else:?>
+      <a href="login.php">Log in</a>
+  <?php endif; ?><br><br>
+</html>
 <html>
 <!DOCTYPE html>
   <html lang="en">

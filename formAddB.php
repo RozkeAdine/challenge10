@@ -1,10 +1,22 @@
 <html>
+<?php session_start();
+if(empty($_SESSION['login']))
+{
+  header('location:login.php');
+  exit();
+}
+
+if (isset($_SESSION['login'])): ?>
+  hello, <?=$_SESSION['login'] ?>!
+  <a href="logout.php">Log out</a>
+  <?php else:?>
+      <a href="login.php">Log in</a>
+  <?php endif; ?><br><br>
+
 <button  type="submit" name="submit"><a href="index.php">retour à la liste d'ouvrage</a></button>    <button  type="submit" name="submit"><a href="formDeleteB.php">Supprimer un ouvrage</a></button>
 <br><br>
-</html><?php
-// ouverture de la connexion
-session_start();
-
+</html>
+<?php
 require_once 'connec.php';
 $pdo = new \PDO(DSN, USER, PASS);
 // traitement
