@@ -1,5 +1,4 @@
 <?php
-
 require_once 'connec.php';
 $pdo = new \PDO(DSN, USER, PASS);
 $query = ("SELECT * FROM projet_bibliotheque.books ORDER BY 'title' ASC");
