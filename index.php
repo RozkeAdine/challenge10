@@ -28,9 +28,12 @@ $books = $pdo->query($query)->fetchAll(PDO::FETCH_OBJ);
         <?php foreach($books as $book)
         { ?>
             <li>
+            <form action="cart.php" method="POST">
                 <h3>
                 <?= "{$book->saga} - {$book->title}"; ?>
                 </h3>
+                <button type="submit">Ajouter au panier</button>
+            </form>
             </li>
         <?php } ?>
         </ul>
